@@ -1,0 +1,77 @@
+.banner {
+	height: 360px ;
+    overflow: hidden ;
+}
+
+.banner {
+	height: 360px;
+    margin-top: 2px;
+    overflow: hidden;
+}
+.banner .content {
+	width: 1060px;
+    height: 360px;
+    margin: 20px auto;
+    position: relative;
+   
+}
+
+.banner ul li img {
+	width: 1024px ;
+	height: 360px ;
+}
+
+.banner .content ul{
+	width: 10000px;
+	margin-left: -1024px;
+}
+
+.banner_left, .banner_right{
+	width: 160px;
+    height: 360px;
+    display: inline-block;
+    position: absolute;
+    background: #7fa5ea;
+    left: -160px;
+    top: 0;
+    opacity: 0.6;
+}
+
+.banner_right{
+    width: 200px;
+    height: 360px;
+    display: inline-block;
+    position: absolute;
+    background: #7fa5ea;
+    left: 1023px;
+    top: 0;
+    opacity: 0.6;
+}
+
+.btn_left ,.btn_right{
+	display: inline-block;
+	width: 21px;
+	height: 150px;
+	background: url(../img/banner_tb.png) no-repeat;
+	position: absolute;
+	left: 120px;
+	top: 112px;
+	opacity: 0;
+	transition: all ease 0.6s;
+	cursor: pointer;
+}
+
+.btn_right{
+	background-position: -29px 0;
+	position: absolute;
+	left: 16px;
+	top: 112px;
+}
+
+.banner .content:hover .btn_left{
+	opacity: 1;
+}
+
+.banner .content:hover .btn_right{
+	opacity: 1;
+}
