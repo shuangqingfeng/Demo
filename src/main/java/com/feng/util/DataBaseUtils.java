@@ -1,9 +1,14 @@
 package com.feng.util;
 
+import javax.sound.midi.Soundbank;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.sql.*;
 import java.util.*;
+import java.util.Date;
 
 /**
  * Created by Fengunion on 2017/6/7.
@@ -47,7 +52,7 @@ public class DataBaseUtils {
         Connection connection = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:8080/" + dataBaseName
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + dataBaseName
                     + "?useUnicode=true&characterEncoding=utf8", username, password);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -150,6 +155,85 @@ public class DataBaseUtils {
         }
         result = list.get(0);
         return result;
+    }
+
+    /**
+     * 查出数据并返回一个javaBean
+     *
+     * @param sql
+     * @param clazz
+     * @param objects
+     * @param <T>
+     * @return
+     */
+    public static <T> T queryForBean(String sql, Class clazz, Object... objects) {
+        T obj = null;
+        Map<String, Object> map = null;
+        Field field = null;
+        try {
+            obj = (T) clazz.newInstance();//创建一个新的bean实例
+            map = queryForMap(sql, objects);//先将结果集放在一个Map中
+        } catch (InstantiationException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        if (map == null) {
+            return null;
+        }
+
+        for (String columnName : map.keySet()) {
+            Method method = null;
+            String propertyName = StringUtils.columnToProperty(columnName);
+            System.out.println("属性名称："+propertyName);
+            try {
+                 field = clazz.getDeclaredField(propertyName);
+
+            } catch (NoSuchFieldException e) {
+                e.printStackTrace();
+            }
+            String fieldType = field.toString().split(" ")[1];
+            System.out.println("javaBean中字段的类型：" + fieldType);
+            Object value = map.get(columnName);
+            if (value == null) {
+                continue;
+            }
+            String setMethodName = "set" + StringUtils.upperCaseFirstCharacter(propertyName);
+            System.out.println("获取javaBean中的set方法：" + setMethodName);
+            String valueType = value.getClass().getName();
+
+            if (!fieldType.equalsIgnoreCase(valueType)) {
+                System.out.println("类型不匹配");
+                if (fieldType.equalsIgnoreCase("java.lang.Integer")) {
+                    value = Integer.parseInt(String.valueOf(value));
+                } else if (fieldType.equalsIgnoreCase("java.lang.String")) {
+                    value = String.valueOf(value);
+                } else if (fieldType.equalsIgnoreCase("java.util.Date")) {
+                    valueType = "java.util.Date";
+                    String dateStr = String.valueOf(value);
+                    Timestamp timestamp = Timestamp.valueOf(dateStr);
+                    Date date = new Date(timestamp.getTime());
+                    value = date;
+                }
+            }
+
+            try {
+                Method declaredMethod = clazz.getDeclaredMethod(setMethodName, Class.forName(fieldType));
+                declaredMethod.invoke(obj, value);
+
+            } catch (NoSuchMethodException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+
+        return obj;
+
     }
 
 

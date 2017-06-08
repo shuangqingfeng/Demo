@@ -1,12 +1,7 @@
 package com.feng.Test;
 
-import com.feng.bean.Article;
-import com.feng.model.User;
+import com.feng.bean.User;
 import com.feng.util.DataBaseUtils;
-import com.feng.util.TableUtils;
-
-import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Fengunion on 2017/6/6.
@@ -26,8 +21,10 @@ public class TestMain {
 //        System.out.println(result);
 
 
-        Map<String, Object> result = DataBaseUtils.queryForMap("select * from t_user where username=?", "习近平");
-        System.out.println(result);
+//        Map<String, Object> result = DataBaseUtils.queryForMap("select * from t_user where username=?", "习近平");
+//        System.out.println(result);
+        User user = DataBaseUtils.queryForBean("select * from t_user  limit 1", User.class);
+        System.out.println(user);
 
     }
 

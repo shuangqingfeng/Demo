@@ -174,8 +174,8 @@
     </style>
 </head>
 <body>
-
-<div class="header">
+<%@include file="common/header.jsp" %>
+<%--<div class="header">
     <div class="logo">原创文字</div>
     <ul>
         <li class="first">首页</li>
@@ -190,7 +190,7 @@
         <span><a href="log.jsp">注册</a> </span>
     </div>
 
-</div>
+</div>--%>
 <div class="banner">
     <div class="content">
         <ul>
