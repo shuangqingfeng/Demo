@@ -6,30 +6,50 @@ import com.feng.annotaion.Table;
 /**
  * Created by Fengunion on 2017/6/6.
  */
-@Table(tableName = "t_user")
+@Table(tableName = "t_article")
 public class Article {
-    @Column(type = "varchar(100)", field = "id", primaryKey = true, defaultNull = false)
+    @Column(type = "varchar(100)", field = "id", primaryKey = true)
     private String id;    //主键，采用UUID
-    @Column(type = "VARCHAR(20)", field = "username")
-    private String username;  //用户名
-    @Column(type = "VARCHAR(20)", field = "password")
-    private String password;  //密码
-    @Column(type = "VARCHAR(60)", field = "headerPic")
-    private String headerPic; //头像
-    @Column(type = "VARCHAR(60)", field = "email")
-    private String email;     //电子邮箱
-    @Column(type = "VARCHAR(2)", field = "sex")
-    private Integer sex;     //性别 0男 1女 3保密
-    @Column(type = "datetime", field = "create_time")
-    private String createTime;//创建时间
-    @Column(type = "timestamp", field = "update_time")
-    private String updateTime;//最后更新时间
+    @Column(type = "varchar(100)", field = "header")
+    private String header;//标题
+    @Column(type = "varchar(60)", field = "name")
+    private String name;  //文章名称
+    @Column(type = "text", field = "content")
+    private String content; //文章内容
+    @Column(type = "varchar(30)", field = "author")
+    private String author;     //作者
+    @Column(type = "varchar(100)", field = "description")
+    private String description;     //概要
+    @Column(type = "int(1)", field = "is_published")
+    private String isPublished;//是否发布 0 未发布  1 已删除
     @Column(type = "int(1)", field = "is_delete")
-    private Integer isDelete; // 删除状态0未删除1删除
-    @Column(type = "VARCHAR(200)", field = "address")
-    private String address;   //地址
-    @Column(type = "VARCHAR(15)", field = "telephone")
-    private String telephone; //电话
+    private String isDelete;//是否删除  0 未删除  1 已删除
+    @Column(type = "timestamp", field = "create_time")
+    private String createTime; // 创建时间
+    @Column(type = "timestamp", field = "update_time", defaultNull = false)
+    private String updateTime;   //最后更新时间
+    @Column(field = "user_id", type = "varchar(100)", defaultNull = false)
+    private String userId;//作者id
+    @Column(field = "category_id", type = "int(2)", defaultNull = false)
+    private Integer categoryId;//分类ID
+
+    @Override
+    public String toString() {
+        return "Article{" +
+                "id='" + id + '\'' +
+                ", header='" + header + '\'' +
+                ", name='" + name + '\'' +
+                ", content='" + content + '\'' +
+                ", author='" + author + '\'' +
+                ", description=" + description +
+                ", isPublished='" + isPublished + '\'' +
+                ", isDelete='" + isDelete + '\'' +
+                ", createTime=" + createTime +
+                ", updateTime='" + updateTime + '\'' +
+                ", userId='" + userId + '\'' +
+                ", categoryId=" + categoryId +
+                '}';
+    }
 
     public String getId() {
         return id;
@@ -39,44 +59,60 @@ public class Article {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getHeader() {
+        return header;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setHeader(String header) {
+        this.header = header;
     }
 
-    public String getPassword() {
-        return password;
+    public String getName() {
+        return name;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getHeaderPic() {
-        return headerPic;
+    public String getContent() {
+        return content;
     }
 
-    public void setHeaderPic(String headerPic) {
-        this.headerPic = headerPic;
+    public void setContent(String content) {
+        this.content = content;
     }
 
-    public String getEmail() {
-        return email;
+    public String getAuthor() {
+        return author;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
-    public Integer getMale() {
-        return sex;
+    public String getDescription() {
+        return description;
     }
 
-    public void setMale(Integer sex) {
-        this.sex = sex;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getIsPublished() {
+        return isPublished;
+    }
+
+    public void setIsPublished(String isPublished) {
+        this.isPublished = isPublished;
+    }
+
+    public String getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(String isDelete) {
+        this.isDelete = isDelete;
     }
 
     public String getCreateTime() {
@@ -95,28 +131,20 @@ public class Article {
         this.updateTime = updateTime;
     }
 
-    public Integer getIsDelete() {
-        return isDelete;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setIsDelete(Integer isDelete) {
-        this.isDelete = isDelete;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
-    public String getAddress() {
-        return address;
+    public Integer getCategoryId() {
+        return categoryId;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getTelephone() {
-        return telephone;
-    }
-
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
     }
 }
 

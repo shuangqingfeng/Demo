@@ -23,7 +23,7 @@
 
 .banner .content ul{
 	width: 10000px;
-	margin-left: -1024px;
+
 }
 
 .banner_left, .banner_right{
@@ -52,7 +52,7 @@
 	display: inline-block;
 	width: 21px;
 	height: 150px;
-	background: url(../img/banner_tb.png) no-repeat;
+	background: url(/images/banner_tb.png) no-repeat;
 	position: absolute;
 	left: 120px;
 	top: 112px;

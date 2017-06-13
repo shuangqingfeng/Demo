@@ -1,21 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%@include  file="common/taglib.jsp"%>
+<%@include file="common/taglib.jsp" %>
 <html>
 <head>
-    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+    <script src="<%=basePath%>/static/js/jQuery.js"></script>
+    <link rel="stylesheet" type="text/css" href="<%=basePath%>/static/css/public.css"/>
+    <link rel="stylesheet" type="text/css" href="<%=basePath%>/static/css/login.css"/>
     <title>登陆页面</title>
 
 </head>
 <body>
 
-
+<%@include file="common/header.jsp" %>
 <!-- 展示信息 -->
+<div class="show">
+    <img src="images/msg.png">
+</div>
 
-
+<style>
+    .content .logo{
+        text-align: center;
+        line-height: 90px;
+        color: #fff;
+        font-size: 30px;
+        position: relative;
+        top: 26px;
+    }
+</style>
 <!-- 登陆框 -->
 <div class='content'>
     <div class='logo'>用户登录</div>
