@@ -150,7 +150,7 @@
     </div>
     <%
         //查询出编程代码类的相关文章
-        List<Map<String, Object>> articles2 = articleService.getArticlesByCategoryId(3, 0, 6);
+        List<Map<String, Object>> articles2 = articleService.getArticlesByCategoryId(2, 0, 6);
         pageContext.setAttribute("articles2", articles2);
     %>
 
@@ -158,31 +158,7 @@
         <div class="title">编程代码类</div>
         <ul class="items">
             <c:forEach items="${articles2}" var="item">
-                <li class="item" onclick="detail('${item.id};')">
-                    <div class="item-banner">
-                        <div class="item-header">${item.header}</div>
-                        <div class="item-name" title="${item.name}">${item.name}</div>
-                        <div class="item-author">${item.author} 著</div>
-                    </div>
-                    <div class="item-description">${item.description}</div>
-                </li>
-                <li class="item">
-                    <div class="item-banner">
-                        <div class="item-header">${item.header}</div>
-                        <div class="item-name" title="${item.name}">${item.name}</div>
-                        <div class="item-author">${item.author} 著</div>
-                    </div>
-                    <div class="item-description">${item.description}</div>
-                </li>
-                <li class="item">
-                    <div class="item-banner">
-                        <div class="item-header">${item.header}</div>
-                        <div class="item-name" title="${item.name}">${item.name}</div>
-                        <div class="item-author">${item.author} 著</div>
-                    </div>
-                    <div class="item-description">${item.description}</div>
-                </li>
-                <li class="item">
+                <li class="item" onclick="detail('${item.id}')">
                     <div class="item-banner">
                         <div class="item-header">${item.header}</div>
                         <div class="item-name" title="${item.name}">${item.name}</div>

@@ -3,53 +3,49 @@ package com.feng.bean;
 import com.feng.annotaion.Column;
 import com.feng.annotaion.Table;
 
+import java.util.Date;
+
 /**
  * Created by Fengunion on 2017/6/6.
  */
 @Table(tableName = "t_article")
 public class Article {
-    @Column(type = "varchar(100)", field = "id", primaryKey = true)
-    private String id;    //主键，采用UUID
-    @Column(type = "varchar(100)", field = "header")
-    private String header;//标题
-    @Column(type = "varchar(60)", field = "name")
-    private String name;  //文章名称
-    @Column(type = "text", field = "content")
+
+    @Column(field = "id", type = "varchar(100)", primaryKey = true)
+    private String id; //主键
+
+    @Column(field = "header", type = "varchar(100)")
+    private String header; //标题
+
+    @Column(field = "name", type = "varchar(60)")
+    private String name; //文章名称
+
+    @Column(field = "content", type = "text")
     private String content; //文章内容
-    @Column(type = "varchar(30)", field = "author")
-    private String author;     //作者
-    @Column(type = "varchar(100)", field = "description")
-    private String description;     //概要
-    @Column(type = "int(1)", field = "is_published")
-    private String isPublished;//是否发布 0 未发布  1 已删除
-    @Column(type = "int(1)", field = "is_delete")
-    private String isDelete;//是否删除  0 未删除  1 已删除
-    @Column(type = "timestamp", field = "create_time")
-    private String createTime; // 创建时间
-    @Column(type = "timestamp", field = "update_time", defaultNull = false)
-    private String updateTime;   //最后更新时间
+
+    @Column(field = "author", type = "varchar(30)")
+    private String author; //作者
+
+    @Column(field = "description", type = "varchar(100)")
+    private String description; //概要
+
+    @Column(field = "is_published", type = "int(1)")
+    private Integer isPublished; //是否发布 0 未发布 1 发布
+
+    @Column(field = "is_delete", type = "int(1)")
+    private Integer isDelete;      //是否删除   0 未删除 1 已删除
+
+    @Column(field = "create_time", type = "datetime")
+    private Date createTime;//创建时间
+
+    @Column(field = "update_time", type = "timestamp", defaultNull = false)
+    private Date updateTime;//最后更新时间
+
     @Column(field = "user_id", type = "varchar(100)", defaultNull = false)
     private String userId;//作者id
+
     @Column(field = "category_id", type = "int(2)", defaultNull = false)
     private Integer categoryId;//分类ID
-
-    @Override
-    public String toString() {
-        return "Article{" +
-                "id='" + id + '\'' +
-                ", header='" + header + '\'' +
-                ", name='" + name + '\'' +
-                ", content='" + content + '\'' +
-                ", author='" + author + '\'' +
-                ", description=" + description +
-                ", isPublished='" + isPublished + '\'' +
-                ", isDelete='" + isDelete + '\'' +
-                ", createTime=" + createTime +
-                ", updateTime='" + updateTime + '\'' +
-                ", userId='" + userId + '\'' +
-                ", categoryId=" + categoryId +
-                '}';
-    }
 
     public String getId() {
         return id;
@@ -99,35 +95,35 @@ public class Article {
         this.description = description;
     }
 
-    public String getIsPublished() {
+    public Integer getIsPublished() {
         return isPublished;
     }
 
-    public void setIsPublished(String isPublished) {
+    public void setIsPublished(Integer isPublished) {
         this.isPublished = isPublished;
     }
 
-    public String getIsDelete() {
+    public Integer getIsDelete() {
         return isDelete;
     }
 
-    public void setIsDelete(String isDelete) {
+    public void setIsDelete(Integer isDelete) {
         this.isDelete = isDelete;
     }
 
-    public String getCreateTime() {
+    public Date getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(String createTime) {
+    public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 
-    public String getUpdateTime() {
+    public Date getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(String updateTime) {
+    public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
 
@@ -145,6 +141,25 @@ public class Article {
 
     public void setCategoryId(Integer categoryId) {
         this.categoryId = categoryId;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Article{" +
+                "id='" + id + '\'' +
+                ", header='" + header + '\'' +
+                ", name='" + name + '\'' +
+                ", content='" + content + '\'' +
+                ", author='" + author + '\'' +
+                ", description='" + description + '\'' +
+                ", isPublished=" + isPublished +
+                ", isDelete=" + isDelete +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                ", userId='" + userId + '\'' +
+                ", categoryId=" + categoryId +
+                '}';
     }
 }
 

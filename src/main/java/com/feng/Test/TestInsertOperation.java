@@ -22,11 +22,11 @@ public class TestInsertOperation {
                 + "description,is_published,is_delete,create_time,update_time"
                 + ",user_id,category_id) VALUES (?,?,?,?,?,?,?,?,?,?,?,?) ";
         String id = UUID.randomUUID().toString(); //主键
-        String header = "Java Web实用技术";
-        String name = "tomcat安装2";
+        String header = "第一行代码";
+        String name = "第一行代码";
         String content = "我们经常会在网上下载一些开源项目，或者从别的地方迁移一些项目进来，但经常会发现导入后各种报错。这是初学java肯定会遇到的问题，本文对一些常见的处理方案做一个总结。（本文将MyEclipse项目导入eclipse的过程为例，其他情况也可参考这个流程）";
         String author = "Jack";
-        String description = "tomcat安装和环境变量配置";
+        String description = "走进安卓的世界";
         int isPublished = 1;
         int isDelete = 0;
         String create_time = "2017-1-19 10:43:10";

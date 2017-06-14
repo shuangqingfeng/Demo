@@ -1,6 +1,7 @@
 package com.feng.Test;
 
 import com.feng.bean.Article;
+import com.feng.bean.Comment;
 import com.feng.bean.User;
 import com.feng.util.DataBaseUtils;
 import com.feng.util.TableUtils;
@@ -11,7 +12,7 @@ import com.feng.util.TableUtils;
 public class TestMain {
 
     public static void main(String[] args) {
-        String sql = TableUtils.getCreateTable(Article.class);
+        String sql = TableUtils.getCreateTable(Comment.class);
         System.out.println(sql);
 
 

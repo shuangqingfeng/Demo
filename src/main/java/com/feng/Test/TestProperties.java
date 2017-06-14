@@ -19,6 +19,6 @@ public class TestProperties {
         String id = UUID.randomUUID() + "";
         String createTime = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
         DataBaseUtils.update("INSERT INTO t_user(id,username,password,sex,create_time,is_delete,address,telephone)"
-                + "VALUES(?,?,?,?,?,?,?,?)", id, "胡一刀", 123456, 0, createTime, 0, "保密", "保密");
+                + "VALUES(?,?,?,?,?,?,?,?)", id, "小沈阳", 123456, 0, createTime, 0, "男", "保密");
     }
 }
