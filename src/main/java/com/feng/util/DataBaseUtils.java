@@ -88,7 +88,7 @@ public class DataBaseUtils {
      * @param sql
      * @param objects
      */
-    public static void update(String sql, Object... objects) {
+    public static int update(String sql, Object... objects) {
         Connection connection = getConnection();
         PreparedStatement statement = null;
         try {
@@ -96,11 +96,14 @@ public class DataBaseUtils {
             for (int i = 0; i < objects.length; i++) {
                 statement.setObject(i + 1, objects[i]);
             }
-            statement.executeUpdate();
+            int i = statement.executeUpdate();
+            return i;
         } catch (SQLException e) {
             e.printStackTrace();
+            return 0;
         } finally {
             closeConnection(connection, statement, null);
+
         }
     }
 
@@ -183,9 +186,9 @@ public class DataBaseUtils {
         for (String columnName : map.keySet()) {
             Method method = null;
             String propertyName = StringUtils.columnToProperty(columnName);
-            System.out.println("属性名称："+propertyName);
+            System.out.println("属性名称：" + propertyName);
             try {
-                 field = clazz.getDeclaredField(propertyName);
+                field = clazz.getDeclaredField(propertyName);
 
             } catch (NoSuchFieldException e) {
                 e.printStackTrace();
