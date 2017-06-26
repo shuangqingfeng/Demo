@@ -143,6 +143,20 @@ public class DataBaseUtils {
         return result;
     }
 
+    public static boolean queryIsExist(String sql, Object... objects) {
+        Connection connection = getConnection();
+        Statement statement = null;
+        ResultSet resultSet = null;
+        try {
+            statement = connection.createStatement();
+            boolean execute = statement.execute(sql);
+            System.out.println("是否存在："+execute);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     /**
      * 查询单个数据
      *
@@ -202,7 +216,6 @@ public class DataBaseUtils {
             String setMethodName = "set" + StringUtils.upperCaseFirstCharacter(propertyName);
             System.out.println("获取javaBean中的set方法：" + setMethodName);
             String valueType = value.getClass().getName();
-
             if (!fieldType.equalsIgnoreCase(valueType)) {
                 System.out.println("类型不匹配");
                 if (fieldType.equalsIgnoreCase("java.lang.Integer")) {
